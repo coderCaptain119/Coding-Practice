@@ -6,9 +6,9 @@ public class LinkedList implements List {
     Node tail;
     int size;
 
-    class Node{
+    public class Node{
         Integer data;
-        Node next;
+        public Node next;
         public Node(Integer data){
             this.data = data;
             this.next = null;
@@ -185,6 +185,20 @@ public class LinkedList implements List {
             return -1;
         }
         return count;
+    }
+    public void reverseList(){
+        if (isEmpty()){
+            return;
+        }
+        Node prv = null;
+        Node nxt = head.next;
+        while(head.next != null){
+            head.next = prv;
+            prv = head;
+            head = nxt;
+            nxt = head.next;
+        }
+        head.next = prv;
     }
 
     // return size of the list

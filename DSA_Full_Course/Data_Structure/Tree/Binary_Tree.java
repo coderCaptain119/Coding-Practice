@@ -112,7 +112,8 @@ public class Binary_Tree {
                     if(last.right != null)
                         lvl.addFirst(last.right);
                 }
-            } else {
+            }
+            else {
                 while (lvl.getFirst() != null) {
                     Binary_Tree_Node last = lvl.removeFirst();
                     System.out.print(last.data + " ");
@@ -124,6 +125,46 @@ public class Binary_Tree {
             }
             flag = !(flag);
         }
+    }
+
+    public void zigZagRecrsive(Deque<Binary_Tree_Node> lvl, boolean flag){
+        if (lvl.size() == 1)
+            return;
+        if (!flag) {
+            findNextLvl(lvl, false);
+        }
+        else {
+            findNextLvl(lvl, true);
+        }
+        zigZagRecrsive(lvl, flag ? false : true);
+    }
+    public void findNextLvl(Deque<Binary_Tree_Node> lvl, boolean flag){
+        if (flag && lvl.getFirst() == null){
+            return;
+        }
+        if (!flag && lvl.getLast() == null){
+            return;
+        }
+        Binary_Tree_Node last;
+        if (flag){
+            last = lvl.removeFirst();
+            if (last.right != null)
+                lvl.addLast(last.left);
+            if (last.left != null)
+                lvl.addLast(last.right);
+
+            findNextLvl(lvl, true);
+        }
+        else {
+            last = lvl.removeLast();
+            if (last.left != null)
+                lvl.addFirst(last.right);
+            if (last.right != null)
+                lvl.addFirst(last.left);
+
+            findNextLvl(lvl, false);
+        }
+
     }
 
     // Method for find the height of given tree

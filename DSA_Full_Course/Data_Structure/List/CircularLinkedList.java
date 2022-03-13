@@ -30,8 +30,8 @@ public class CircularLinkedList implements List{
         }
         else{
             tail.next = newNode;
-            newNode.next = head;
         }
+        newNode.next = head;
         tail = newNode;
         size++;
     }
@@ -65,11 +65,7 @@ public class CircularLinkedList implements List{
 
     @Override
     public void addFirst(Integer value) {
-        Node newNode = new Node(value);
-        newNode.next = head;
-        head = newNode;
-        tail.next = head;
-        size++;
+        add(value);
     }
 
     @Override
