@@ -1,5 +1,7 @@
 package Data_Structure.Stack;
 
+import Data_Structure.List.LinkedList;
+
 public class Stack_Using_Linked_List {
     // This class shows how to Implement
     // Stack using Linked List
@@ -15,6 +17,12 @@ public class Stack_Using_Linked_List {
             this.data = value;
         }
     }
+    public boolean isEmpty(){
+        if (top == null){
+            return true;
+        }
+        return false;
+    }
     // push() method for insert data into Stack
     public void push(int value){
         Node newTop = new Node(value);
@@ -24,8 +32,8 @@ public class Stack_Using_Linked_List {
     }
     // pop() method for delete data from Stack
     public void pop(){
-        if(top == null){
-            System.out.println("StackUnderFlow");
+        if(isEmpty()){
+            System.out.println("Stack UnderFlow");
             return;
         }
         top = top.next;
@@ -33,8 +41,8 @@ public class Stack_Using_Linked_List {
     }
     // peek() method for get data from Stack
     public int peek(){
-        if(top == null){
-            System.out.println("EmptyStack");
+        if(isEmpty()){
+            System.out.println("Stack is Empty");
             return -1;
         }
         return this.top.data;
@@ -44,4 +52,20 @@ public class Stack_Using_Linked_List {
         return this.size;
     }
 
+    @Override
+    public String toString() {
+        if (isEmpty()){
+            String s = "Stack is Empty";
+            return s;
+        }
+        StringBuffer s = new StringBuffer();
+        Node temp = top;
+        s.append("[ ");
+        while(temp != null){
+            s.append(temp.data + " ");
+            temp = temp.next;
+        }
+        s.append("]");
+        return s.toString();
+    }
 }

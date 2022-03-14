@@ -129,7 +129,8 @@ public class LinkedList implements List {
     }
 
     // delete number from given position in list
-    public void delete(int position){
+    @Override
+    public void deleteAt(int position){
         if (isEmpty()){
             System.out.println("EmptyLinkedList");
             return;
@@ -186,6 +187,9 @@ public class LinkedList implements List {
         }
         return count;
     }
+
+    // Method for reverse given list
+    @Override
     public void reverseList(){
         if (isEmpty()){
             return;
@@ -199,6 +203,21 @@ public class LinkedList implements List {
             nxt = head.next;
         }
         head.next = prv;
+    }
+    // Static method for reverse list
+    public static Node reverseRecursive(Node head){
+        if(head == null){
+            return null;
+        }
+        if(head.next == null){
+            return head;
+        }
+
+        Node res = reverseRecursive(head.next);
+        head.next.next = head;
+        head.next = null;
+
+        return res;
     }
 
     // return size of the list
