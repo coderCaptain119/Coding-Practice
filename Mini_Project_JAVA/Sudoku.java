@@ -96,7 +96,11 @@ public class Sudoku{
     }
     public static void main(String[] args) {
         giveInput();
-        sudokuSolver();
-        displayBoard();
+        if (sudokuSolver()) {
+            displayBoard();
+        }
+        else {
+            System.out.println("Given board is InValid :(");
+        }
     }
 }
